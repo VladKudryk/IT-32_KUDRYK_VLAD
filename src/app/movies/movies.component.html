@@ -1,0 +1,16 @@
+<section class="movies">
+  <h2 class="movies__heading">Каталог фільмів</h2>
+
+  <p *ngIf="favoriteMessage" class="movies__message">{{ favoriteMessage }}</p>
+
+  <div class="movies__grid">
+    <app-movie-card
+      *ngFor="let movie of movies"
+      [title]="movie.title"
+      [genre]="movie.genre"
+      [year]="movie.year"
+      [rating]="movie.rating"
+      (addedToFavorites)="onAddedToFavorites($event)">
+    </app-movie-card>
+  </div>
+</section>

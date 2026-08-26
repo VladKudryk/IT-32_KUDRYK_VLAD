@@ -1,0 +1,23 @@
+.movies {
+  padding: 32px;
+}
+
+.movies__heading {
+  color: #f1f1f1;
+  margin-bottom: 16px;
+}
+
+.movies__message {
+  background-color: #2c3d2c;
+  color: #4caf50;
+  padding: 10px 16px;
+  border-radius: 6px;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.movies__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
