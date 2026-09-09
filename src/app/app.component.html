@@ -1,0 +1,24 @@
+<h1> Моя бібліотека </h1>
+
+<p> Всього книг: {{ books.length }} </p>
+    
+<div *ngFor="let book of books; let i = index" 
+    [ngClass] = "{
+        'big': book.pages > 350,
+        'medium': book.pages >= 200 && book.pages <= 350,
+        'small': book.pages < 200
+        }">
+        
+        <h3>{{ book.title }}</h3>
+        <p>Автор: {{ book.author }}</p>
+        <p>Кількість сторінок: {{ book.pages }}</p>
+        <p *ngIf="book.pages > 350">Велика книга</p>
+        <button (click)="removeBook(i)">Видалити книгу</button>
+    </div>
+
+    <h2>Додати нову книгу</h2>
+    <label>Назва: <input [(ngModel)]="newTitle" name="title"></label><br>
+    <label>Автор: <input [(ngModel)]="newAuthor" name="author"></label><br>
+    <label>Кількість сторінок: <input type="number" [(ngModel)]="newPages" name="pages"></label><br>
+
+    <button [disabled]="!newTitle || !newAuthor || !newPages" (click)="addBook()"> Додати книгу </button>
