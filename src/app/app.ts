@@ -1,12 +1,38 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { BookService, Book } from './services/book.services';
 
 @Component({
-  imports: [RouterOutlet],
-  selector: 'app-root',
-  styleUrl: './app.css',
-  templateUrl: './app.html',
+    selector: 'app-root',
+    standalone: true,
+    imports: [CommonModule, FormsModule],
+    templateUrl: './app.html',
+    styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('pr3');
+  books;
+
+  newTitle = '';
+  newAuthor = '';
+  newPages: number | null = null;
+
+  constructor(private bookService: BookService) {
+    this.books = this.bookService.getBooks();
+  }
+
+  addBook() {
+    if (this.newTitle || this.newAuthor || this.newPages !== null) {
+      return;
+    }
+
+    this.bookService.addBook(this.newTitle, this.newAuthor, this.newPages!);
+    this.newTitle = '';
+    this.newAuthor = '';
+    this.newPages = null;
+  }
+
+  removeBook(id: number) {
+    this.bookService.removeBook(id);
+  }
 }
