@@ -1,12 +1,9 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { CourseFormComponent } from './course-form/course-form';
 
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
-  styleUrl: './app.css',
-  templateUrl: './app.html',
+  imports: [CourseFormComponent],
+  template: '<app-course-form></app-course-form>',
 })
-export class App {
-  protected readonly title = signal('pr6');
-}
+export class App {}
